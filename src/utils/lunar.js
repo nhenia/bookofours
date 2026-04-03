@@ -44,11 +44,21 @@ export function getLunarStatus(date = new Date(), coords = { lat: 40.7128, lng: 
   ];
 
   const SIDEREAL_MONTH_MS = 27.321661 * 24 * 60 * 60 * 1000;
-  const signProgress = (msSinceEpoch % SIDEREAL_MONTH_MS) / SIDEREAL_MONTH_MS;
+  const rawSignProgress = (msSinceEpoch % SIDEREAL_MONTH_MS) / SIDEREAL_MONTH_MS;
+  const signProgress = rawSignProgress >= 0 ? rawSignProgress : 1 + rawSignProgress;
   const signIndex = Math.floor(signProgress * 12);
-  const currentSign = zodiacSigns[signIndex >= 0 ? signIndex : 12 + signIndex];
+  const currentSign = zodiacSigns[signIndex];
 
-  // Woodcut Marginalia based on sign/phase
+  // Logic for Special States
+  const isVoidOfCourse = (signProgress * 12 % 1) > 0.933; // Last ~2 degrees of sign
+  const isEgyptianDay = (date.getMonth() === 3 && (date.getDate() === 10 || date.getDate() === 20));
+  const isLunarZenith = currentOffice === "Sext";
+
+  // Subtle Ruler (Classical Planets by Day)
+  const rulers = ["Sun", "Moon", "Mars", "Mercury", "Jupiter", "Venus", "Saturn"];
+  const subtleRuler = rulers[date.getDay()];
+
+  // Woodcut Marginalia Selection
   const marginalia = [
     "Snail in the Margin",
     "Dancing Bear",
@@ -57,7 +67,13 @@ export function getLunarStatus(date = new Date(), coords = { lat: 40.7128, lng: 
     "The Hermit's Lantern",
     "The Broken Sword"
   ];
-  const currentMarginalia = marginalia[Math.floor(phase * marginalia.length)];
+
+  let currentMarginalia = marginalia[Math.min(marginalia.length - 1, Math.floor(phase * marginalia.length))];
+
+  // Priority Historical Marginalia
+  if (isVoidOfCourse) currentMarginalia = "Verdigris Snail";
+  else if (isLunarZenith) currentMarginalia = "White Monastic Cat";
+  else if (isEgyptianDay) currentMarginalia = "Locust-Dragon";
 
   return {
     office: currentOffice,
@@ -65,6 +81,10 @@ export function getLunarStatus(date = new Date(), coords = { lat: 40.7128, lng: 
     phase: phase,
     altitude: altitude,
     isDarkMoon: phase < 0.05 || phase > 0.95,
+    isVoidOfCourse,
+    isEgyptianDay,
+    isLunarZenith,
+    subtleRuler,
     marginalia: currentMarginalia,
     lunarDayProgress: lunarDayProgress,
     timestamp: time

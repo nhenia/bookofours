@@ -30,4 +30,37 @@
     from, to { border-color: transparent }
     50% { border-color: var(--color-iron-gall) }
   }
+
+  /* Glow pulse for binding mode */
+  .animate-glow-pulse {
+    animation: glow-pulse 3s infinite;
+  }
+
+  @keyframes glow-pulse {
+    0%, 100% {
+      box-shadow: 0 0 10px rgba(244, 241, 234, 0.1);
+      opacity: 0.2;
+    }
+    50% {
+      box-shadow: 0 0 25px rgba(244, 241, 234, 0.3);
+      opacity: 1;
+    }
+  }
+
+  /* Snail creep animation */
+  .animate-creep {
+    animation: creep 120s linear infinite;
+  }
+
+  @keyframes creep {
+    from { transform: translateX(-10vw); }
+    to { transform: translateX(110vw); }
+  }
+
+  /* Asemic mode (monastic silence blur) */
+  .asemic-mode {
+    filter: blur(8px);
+    pointer-events: none;
+    transition: filter 2s ease-in-out;
+  }
 }

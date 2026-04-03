@@ -64,7 +64,7 @@ export function generateAlmanac(logs, status) {
   };
 
   // Page 1: Cover (Bottom Left)
-  drawCell(1, 0, cellHeight, "BOOK OF OURS", "A Digital Breviary for the Modern Anchorite\n\nCycle of " + status.sign + "\nDark of the Moon Edition");
+  drawCell(1, 0, cellHeight, "BOOK OF OURS", "A Digital Breviary for the Modern Anchorite\n\nCycle of " + status.sign + "\nRuler: " + status.subtleRuler + "\n\nDark of the Moon Edition");
 
   // Page 2: (Top Left, Rotated)
   drawCell(2, 0, 0, "I. INTENTION", logs[0]?.text || "A quiet space for thought...", true);
