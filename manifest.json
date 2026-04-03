@@ -1,0 +1,16 @@
+{
+    "name": "Book of Ours",
+    "short_name": "bookofours",
+    "description": "A pocket monastery for the Modern Anchorite.",
+    "start_url": "/index.html",
+    "display": "standalone",
+    "background_color": "#f4ecd8",
+    "theme_color": "#f4ecd8",
+    "icons": [
+        {
+            "src": "https://img.icons8.com/ios-filled/512/moon-star.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
