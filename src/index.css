@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-vellum: #f4f1ea;
+    --color-iron-gall: #2b2622;
+  }
+
+  body {
+    @apply antialiased min-h-screen bg-black text-vellum font-serif;
+  }
+
+  .font-bastarda {
+    font-family: 'Pirata One', cursive;
+  }
+
+  .font-serif {
+    font-family: 'MedievalSharp', serif;
+  }
+
+  /* Iron-gall text cursor effect */
+  .cursor-iron-gall {
+    border-right: 2px solid var(--color-iron-gall);
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    from, to { border-color: transparent }
+    50% { border-color: var(--color-iron-gall) }
+  }
+}
