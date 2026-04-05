@@ -1,20 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Book of Ours | Digital Breviary</title>
-    <style>
-      @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&family=Pirata+One&display=swap');
-      /* Mapping fonts:
-         Pirata One -> Bastarda
-         MedievalSharp -> Medieval Serif
-      */
-    </style>
-  </head>
-  <body class="bg-black text-vellum selection:bg-iron-gall selection:text-vellum">
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Digital Breviary | bookofours</title>
+    <meta name="description" content="A pocket monastery for the Modern Anchorite.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#f4ecd8">
+    <!-- Fonts - Using Google Fonts for Fraktur and Serif equivalents for now -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=IM+Fell+English:ital@0;1&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body class="parchment-bg">
+    <div id="app" class="vibe-container">
+        <header>
+            <h1 class="fraktur-header">Book of Ours</h1>
+            <div id="lunar-status" class="status-bar serif-text">
+                <!-- Celestial status will be injected here -->
+            </div>
+        </header>
+
+        <main id="main-content">
+            <section id="astrolabe-container">
+                <svg id="astrolabe-svg" viewBox="0 0 200 200" width="180" height="180">
+                    <circle cx="100" cy="100" r="90" fill="transparent" stroke="var(--ink-color)" stroke-width="1.5" stroke-dasharray="2 4" />
+                    <circle cx="100" cy="100" r="70" fill="transparent" stroke="var(--ink-color)" stroke-width="1" />
+                    <!-- Lunar Progress Indicator -->
+                    <g id="lunar-dial">
+                        <line x1="100" y1="100" x2="100" y2="30" stroke="var(--ink-color)" stroke-width="2" />
+                        <circle id="moon-pointer" cx="100" cy="30" r="5" fill="var(--ink-color)" />
+                    </g>
+                    <!-- Zodiac/Hours markers (simplified) -->
+                    <g id="markers"></g>
+                </svg>
+            </section>
+
+            <section id="grimoire-container">
+                <div id="grimoire-input" contenteditable="true" placeholder="Begin your entry..."></div>
+                <div id="entry-meta" class="serif-text italic"></div>
+            </section>
+        </main>
+
+        <aside id="marginalia-area">
+            <!-- Whimsical creatures will appear here -->
+        </aside>
+
+        <nav id="navigation">
+            <button id="btn-almanac" title="The Monthly Almanac">Almanac</button>
+            <button id="btn-settings" title="Preferences">Preferences</button>
+        </nav>
+
+        <div id="settings-panel" class="hidden serif-text">
+            <h2>Preferences</h2>
+            <div class="setting-row">
+                <label>Clock Mode:</label>
+                <select id="pref-clock">
+                    <option value="lunar">Lunar Only</option>
+                    <option value="solar">Solar Only</option>
+                    <option value="both">Both</option>
+                </select>
+            </div>
+            <div class="setting-row">
+                <label>Haptic Bell:</label>
+                <input type="checkbox" id="pref-haptic" checked>
+            </div>
+            <button id="btn-close-settings">Close</button>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="app.js" type="module"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js');
+            });
+        }
+    </script>
+</body>
 </html>
