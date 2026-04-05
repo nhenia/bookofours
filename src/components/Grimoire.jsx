@@ -19,7 +19,7 @@ export function Grimoire({ status, onSave, onBack }) {
 
   return (
     <div className="fixed inset-0 bg-black flex items-center justify-center p-4 md:p-12 z-50 overflow-auto">
-      <div className="w-full max-w-3xl min-h-[90vh] bg-[#f4f1ea] text-[#2b2622] p-8 md:p-16 shadow-[0_0_80px_rgba(0,0,0,0.5)] relative overflow-hidden flex flex-col">
+      <div className="w-full max-w-3xl min-h-[90vh] bg-vellum text-iron-gall p-8 md:p-16 shadow-[0_0_80px_rgba(0,0,0,0.5)] relative overflow-hidden flex flex-col">
 
         {/* Vellum Texture Overlay */}
         <div className="absolute inset-0 pointer-events-none opacity-40 mix-blend-multiply bg-[url('https://www.transparenttextures.com/patterns/parchment.png')]"></div>

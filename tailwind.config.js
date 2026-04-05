@@ -11,8 +11,8 @@ export default {
         'serif': ['"MedievalSharp"', 'serif'],
       },
       colors: {
-        'vellum': '#f4f1ea',
-        'iron-gall': '#2b2622',
+        vellum: 'var(--color-vellum)',
+        'iron-gall': 'var(--color-iron-gall)'
       },
     },
   },
