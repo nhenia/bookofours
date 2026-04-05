@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Living Parchment Mockup | Book of Ours</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pirata+One&family=MedievalSharp&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-vellum: #f4f1ea;
+            --color-iron-gall: #2b2622;
+            --color-gold-leaf: #d4af37;
+            --color-cinnabar: #e34234;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #000;
+            color: var(--color-vellum);
+            font-family: 'MedievalSharp', serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .ambient-glow {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(244, 241, 234, 0.05) 0%, rgba(0, 0, 0, 0) 70%);
+            filter: blur(120px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .breviary-container {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 2rem;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .office-header {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.4em;
+            opacity: 0.4;
+            margin-bottom: 3rem;
+        }
+
+        .current-office {
+            font-family: 'Pirata One', cursive;
+            font-size: clamp(4rem, 15vw, 8rem);
+            margin-bottom: 1.5rem;
+            animation: pulse 6s ease-in-out infinite;
+            color: var(--color-vellum);
+        }
+
+        .celestial-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .moon-sign {
+            font-size: 1.5rem;
+            font-style: italic;
+            opacity: 0.6;
+        }
+
+        .altitude {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            opacity: 0.3;
+        }
+
+        .action-button {
+            margin-top: 6rem;
+            padding: 0.8rem 2.5rem;
+            background: transparent;
+            border: 1px solid rgba(244, 241, 234, 0.2);
+            border-radius: 9999px;
+            color: var(--color-vellum);
+            font-family: 'MedievalSharp', serif;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0.5;
+        }
+
+        .action-button:hover {
+            opacity: 1;
+            border-color: rgba(244, 241, 234, 0.6);
+            background: rgba(244, 241, 234, 0.05);
+        }
+
+        .settings-trigger {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            opacity: 0.2;
+            cursor: pointer;
+            border: 1px solid rgba(244, 241, 234, 0.2);
+            padding: 0.5rem 1rem;
+            transition: opacity 0.3s ease;
+        }
+
+        .settings-trigger:hover {
+            opacity: 1;
+        }
+
+        .binding-status {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            border: 1px solid var(--color-cinnabar);
+            padding: 0.5rem 1rem;
+            color: var(--color-cinnabar);
+            animation: pulse-red 2s infinite;
+        }
+
+        .marginalia {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            opacity: 0.2;
+        }
+
+        /* Asemic Mode (Simulated Void of Course) */
+        .asemic-blur {
+            filter: blur(4px);
+            pointer-events: none;
+            user-select: none;
+            opacity: 0.3;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.8; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.02); }
+        }
+
+        @keyframes pulse-red {
+            0%, 100% { opacity: 0.4; box-shadow: 0 0 0 rgba(227, 66, 52, 0); }
+            50% { opacity: 1; box-shadow: 0 0 10px rgba(227, 66, 52, 0.3); }
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 600px) {
+            .breviary-container { padding: 1rem; }
+            .current-office { font-size: 5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="ambient-glow"></div>
+
+    <div class="settings-trigger">Settings</div>
+    <div class="binding-status">Binding Mode Available</div>
+
+    <div class="breviary-container">
+        <div class="office-header">Sublunary Office</div>
+        <h1 class="current-office">Sext</h1>
+        <div class="celestial-meta">
+            <span class="moon-sign">Moon in Aquarius</span>
+            <span class="altitude">Altitude: 42.5°</span>
+        </div>
+
+        <button class="action-button">Open the Grimoire</button>
+    </div>
+
+    <div class="marginalia">Anti-Hustle // Pocket Monastery</div>
+
+    <script>
+        // Toggle Asemic Mode simulation on click for demonstration
+        document.body.addEventListener('dblclick', () => {
+            document.querySelector('.breviary-container').classList.toggle('asemic-blur');
+            console.log("Toggle Asemic Mode (Void of Course Simulation)");
+        });
+    </script>
+</body>
+</html>

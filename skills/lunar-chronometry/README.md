@@ -11,6 +11,7 @@ This skill provides the temporal heartbeat for the "Book of Ours" project. It is
   - `CHRONOMETRY.md`: A deep dive into the 24.84-hour cycle and the Eight Offices.
 - **[assets/](./assets/)**: Static configuration and templates.
   - `theme.json`: Defines the "Iron-Gall" and "Vellum" visual palette.
+  - `mockup.html`: A self-contained front-end mockup of the "Living Parchment" UI.
 
 ## 🛠️ Usage for Developers
 
