@@ -30,6 +30,8 @@ const LUNAR_EPOCH = new Date('2024-01-11T11:57:00Z').getTime(); // Start of a cy
 const LUNAR_DAY_MS = 24.841 * 60 * 60 * 1000;
 const MONASTIC_HOUR_MS = LUNAR_DAY_MS / 8;
 
+const domCache = {};
+
 const state = {
     now: new Date(),
     currentHourIndex: 0,
@@ -110,10 +112,7 @@ function saveEntry(text) {
 // --- UI SYNC ---
 
 function updateUI() {
-    const statusEl = document.getElementById('lunar-status');
-    const metaEl = document.getElementById('entry-meta');
-    const dial = document.getElementById('lunar-dial');
-    const body = document.body;
+    const { statusEl, metaEl, dial, body } = domCache;
 
     // Rotate Dial based on Monastic Hour (using lunar progress)
     const elapsed = state.now.getTime() - LUNAR_EPOCH;
@@ -154,7 +153,7 @@ function updateUI() {
  * Handle the appearance of whimsical creatures based on state
  */
 function updateMarginalia() {
-    const area = document.getElementById('marginalia-area');
+    const area = domCache.marginaliaArea;
     if (!area) return;
 
     // Clear previous marginalia for fresh state
@@ -246,6 +245,13 @@ function bindAlmanac() {
 }
 
 function init() {
+    // Cache frequently accessed DOM elements
+    domCache.statusEl = document.getElementById('lunar-status');
+    domCache.metaEl = document.getElementById('entry-meta');
+    domCache.dial = document.getElementById('lunar-dial');
+    domCache.body = document.body;
+    domCache.marginaliaArea = document.getElementById('marginalia-area');
+
     const inputArea = document.getElementById('grimoire-input');
     const almanacBtn = document.getElementById('btn-almanac');
     const settingsBtn = document.getElementById('btn-settings');
