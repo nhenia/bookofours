@@ -22,10 +22,3 @@ export function getLogs() {
 export function clearLogs() {
   localStorage.removeItem(STORAGE_KEY);
 }
-
-export function getLogsForCycle() {
-  // Logic to return logs since the last New Moon
-  // This is for "Binding Mode" / Almanac Generation
-  // For simplicity, we just return all for now
-  return getLogs();
-}
