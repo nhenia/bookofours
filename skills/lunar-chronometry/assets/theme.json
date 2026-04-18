@@ -1,0 +1,37 @@
+{
+  "name": "Living Parchment",
+  "colors": {
+    "vellum": {
+      "hex": "#f4f1ea",
+      "description": "A warm, cream-colored base evocative of high-quality animal-skin parchment."
+    },
+    "iron-gall": {
+      "hex": "#2b2622",
+      "description": "A deep, dark-brown ink typical of medieval manuscripts, made from oak galls and iron salts."
+    },
+    "gold-leaf": {
+      "hex": "#d4af37",
+      "description": "A highlight color for illuminated initials and celestial bodies."
+    },
+    "cinnabar": {
+      "hex": "#e34234",
+      "description": "A bright red for rubrication and emphasis."
+    }
+  },
+  "typography": {
+    "bastarda": {
+      "font-family": "Pirata One",
+      "usage": "Headings and major titles."
+    },
+    "serif": {
+      "font-family": "MedievalSharp",
+      "usage": "Body text and log entries."
+    }
+  },
+  "visual-effects": {
+    "asemic-mode": {
+      "blur": "4px",
+      "trigger": "Void of Course"
+    }
+  }
+}
